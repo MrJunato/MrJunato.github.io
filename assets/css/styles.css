@@ -25,6 +25,11 @@
   --pad: clamp(1.25rem, 4vw, 4.5rem);
   --maxw: 78rem;
 
+  /* prancha centralizada: acima de --shell, o rail acompanha o conteúdo
+     em vez de ficar sozinho na borda da tela */
+  --shell: 100rem;
+  --gutter: max(0px, (100vw - var(--shell)) / 2);
+
   --ease: cubic-bezier(.2, .7, .3, 1);
 }
 
@@ -109,6 +114,7 @@ a:hover { text-decoration-color: var(--accent); }
   border-right: 1px solid var(--line);
   z-index: 40;
 }
+.rail { left: var(--gutter); }
 .rail__id { margin-bottom: auto; }
 .rail__name {
   display: block;
@@ -150,7 +156,7 @@ a:hover { text-decoration-color: var(--accent); }
 
 /* ── layout de seções ───────────────────────────────────── */
 
-main { margin-left: var(--rail); }
+main { margin-left: calc(var(--gutter) + var(--rail)); margin-right: var(--gutter); }
 
 .hero, .sec {
   background: var(--bg); color: var(--fg);
@@ -261,10 +267,9 @@ main { margin-left: var(--rail); }
 
 /* specs do hero */
 .specs {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  /* sao exatamente 3: colunas fixas evitam celula vazia no grid */
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; margin: 0 0 clamp(1.8rem, 3.5vw, 2.6rem);
-  background: var(--line);
-  border: 1px solid var(--line);
 }
 .spec { background: var(--bg); padding: 1.1rem 1.1rem; }
 .spec dt {
@@ -304,12 +309,15 @@ main { margin-left: var(--rail); }
 .caps {
   display: grid; gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  background: var(--line); border: 1px solid var(--line);
 }
 .cap {
   background: var(--bg); padding: clamp(1.6rem, 2.4vw, 2.3rem);
   display: flex; flex-direction: column;
 }
+/* a primeira frente abre a seção em faixa larga; as seis restantes
+   fecham 2 ou 3 colunas sem deixar célula vazia no grid */
+.cap:first-child { grid-column: 1 / -1; }
+.cap:first-child > p { max-width: 66ch; }
 .cap .chips { margin-top: auto; padding-top: 1.4rem; }
 .cap h3 {
   font-size: 1.3rem; margin-bottom: 1rem;
@@ -364,7 +372,6 @@ main { margin-left: var(--rail); }
   list-style: none; padding: 0; margin: 0;
   display: grid; gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  background: var(--line); border: 1px solid var(--line);
 }
 .deg { background: var(--bg); padding: 1.6rem 1.4rem; }
 .deg__k {
@@ -398,7 +405,6 @@ main { margin-left: var(--rail); }
 .work {
   display: grid; gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  background: var(--line); border: 1px solid var(--line);
 }
 .proj {
   background: var(--bg);
@@ -422,7 +428,6 @@ main { margin-left: var(--rail); }
 .stack {
   display: grid; gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  background: var(--line); border: 1px solid var(--line);
 }
 .stack__g { background: var(--bg); padding: 1.6rem 1.4rem; }
 .stack__g h3 {
@@ -437,7 +442,6 @@ main { margin-left: var(--rail); }
 .fit {
   display: grid; gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  background: var(--line); border: 1px solid var(--line);
 }
 .fit__c { background: var(--bg); padding: clamp(1.5rem, 2.4vw, 2.1rem); }
 .fit__c h3 { font-size: 1.15rem; margin-bottom: .9rem; font-variation-settings: 'wdth' 102; }
@@ -468,7 +472,8 @@ main { margin-left: var(--rail); }
 /* ── rodapé ─────────────────────────────────────────────── */
 
 .foot {
-  margin-left: var(--rail);
+  margin-left: calc(var(--gutter) + var(--rail));
+  margin-right: var(--gutter);
   padding: 2.5rem var(--pad);
   background: var(--bg);
   font-family: var(--d-mono); font-size: .72rem;
@@ -480,8 +485,8 @@ main { margin-left: var(--rail); }
 /* ── responsivo ─────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
-  :root { --rail: 0rem; }
-  main, .foot { margin-left: 0; }
+  :root { --rail: 0rem; --gutter: 0px; }
+  main, .foot { margin-left: 0; margin-right: 0; }
 
   .rail {
     position: sticky; inset: 0 0 auto 0;
@@ -516,4 +521,11 @@ main { margin-left: var(--rail); }
   .span__cap { font-size: .68rem; }
   .span__svg { display: none; }
   .span__alt { display: block; list-style: none; padding: 0; margin: 0; }
+}
+
+/* ── malha dos grids ─────────────────────────────────────
+   A hairline vem do contorno de cada cartão, não do fundo do
+   container. Assim uma linha incompleta não deixa célula cinza. */
+.cap, .deg, .proj, .stack__g, .fit__c, .spec {
+  outline: 1px solid var(--line);
 }
