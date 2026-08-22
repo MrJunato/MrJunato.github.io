@@ -184,26 +184,33 @@ main { margin-left: var(--rail); }
 
 /* ── hero ───────────────────────────────────────────────── */
 
-.hero { padding-top: clamp(4rem, 11vh, 9rem); }
+.hero { padding-top: clamp(2.5rem, 6vh, 4rem); padding-bottom: clamp(2rem, 3.5vw, 3rem); }
 
 .hero__title {
-  font-size: clamp(4.2rem, 15.5vw, 11.5rem);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
   font-weight: 800;
   font-variation-settings: 'wdth' 118;
-  line-height: .82;
-  letter-spacing: -.045em;
-  margin: 0 0 clamp(1.8rem, 4vw, 3rem);
+  line-height: .92;
+  letter-spacing: -.04em;
+  margin: 0;
+}
+
+.hero__sub {
+  font-family: var(--d-mono); font-size: .78rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent);
+  margin: .9rem 0 clamp(1.4rem, 3vw, 2rem);
 }
 
 .hero__lede {
-  font-size: clamp(1.12rem, 1.1vw + .95rem, 1.5rem);
-  line-height: 1.5;
+  font-size: clamp(1.08rem, .9vw + .9rem, 1.32rem);
+  line-height: 1.55;
   max-width: 54ch;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
 }
 
 /* SIGNATURE — cota dimensional */
-.span { margin: 0 0 clamp(3rem, 6vw, 4.5rem); }
+.span { margin: 0 0 clamp(1.5rem, 3vw, 2.2rem); }
 .span__svg { width: 100%; height: auto; display: block; overflow: visible; }
 .span__ext, .span__dim { stroke: var(--rule); stroke-width: 1; }
 .span__ext { opacity: .5; }
@@ -232,7 +239,7 @@ main { margin-left: var(--rail); }
 
 .span__cap {
   font-family: var(--d-mono); font-size: .74rem;
-  color: var(--fg-2); margin-top: 1.6rem; line-height: 1.5;
+  color: var(--fg-2); margin-top: .9rem; line-height: 1.5;
   max-width: 60ch;
 }
 
@@ -255,11 +262,11 @@ main { margin-left: var(--rail); }
 /* specs do hero */
 .specs {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: 1px; margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  gap: 1px; margin: 0 0 clamp(1.8rem, 3.5vw, 2.6rem);
   background: var(--line);
   border: 1px solid var(--line);
 }
-.spec { background: var(--bg); padding: 1.3rem 1.2rem; }
+.spec { background: var(--bg); padding: 1.1rem 1.1rem; }
 .spec dt {
   font-family: var(--d-mono); font-size: .66rem;
   letter-spacing: .13em; text-transform: uppercase;
@@ -269,7 +276,7 @@ main { margin-left: var(--rail); }
   margin: 0;
   font-family: var(--d-sans); font-weight: 700;
   font-variation-settings: 'wdth' 116;
-  font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1;
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem); line-height: 1;
   letter-spacing: -.03em;
   color: var(--accent);
 }

@@ -1,6 +1,7 @@
 // i18n — PT (default) / EN. Keys mirror data-i18n attributes in index.html.
 const DICT = {
   pt: {
+    "hero.sub": "Dados · IA generativa · Engenharia de software",
     "a11y.skip": "Pular para o conteúdo",
     "rail.role": "Dados · IA · Software",
     "nav.caps": "Capacidades",
@@ -143,6 +144,7 @@ const DICT = {
     "foot.note": "Página estática, escrita à mão. Sem framework, sem rastreador."
   },
   en: {
+    "hero.sub": "Data · Generative AI · Software engineering",
     "a11y.skip": "Skip to content",
     "rail.role": "Data · AI · Software",
     "nav.caps": "Capabilities",
