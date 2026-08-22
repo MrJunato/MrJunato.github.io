@@ -422,6 +422,31 @@ main { margin-left: calc(var(--gutter) + var(--rail)); margin-right: var(--gutte
   letter-spacing: .06em; color: var(--accent);
   margin: .9rem 0 0;
 }
+.proj__link {
+  font-family: var(--d-mono); font-size: .7rem;
+  letter-spacing: .04em; margin: .6rem 0 0;
+}
+.proj__link a { color: var(--accent); text-decoration: none; }
+.proj__link a:hover { text-decoration: underline; }
+
+/* ── amostras visuais por projeto (miniaturas) ─────────── */
+.proj__shots {
+  margin: 0 0 1.1rem;
+  display: flex; gap: 1px;
+}
+.proj__shots img {
+  flex: 1 1 0; min-width: 0;
+  height: clamp(3.75rem, 8vw, 5.25rem);
+  object-fit: cover; display: block;
+  filter: grayscale(1) blur(2.5px) contrast(.88) brightness(.9);
+  opacity: .45;
+  transform: scale(1.08);
+  transition: filter .45s var(--ease), opacity .45s var(--ease);
+}
+.proj__shots img:hover {
+  filter: grayscale(.35) blur(0) contrast(1) brightness(1);
+  opacity: .85;
+}
 
 /* ── stack ──────────────────────────────────────────────── */
 
